@@ -1,0 +1,41 @@
+{
+    "name": "tws-crm",
+    "private": true,
+    "sideEffects": false,
+    "type": "module",
+    "scripts": {
+        "build": "remix build",
+        "dev": "concurrently \"npm run sass\" \"remix dev --manual\"",
+        "sass": "sass --watch app/:app/",
+        "start": "remix-serve ./build/index.js",
+        "typecheck": "tsc"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.4.2",
+        "@remix-run/css-bundle": "^2.1.0",
+        "@remix-run/node": "^2.1.0",
+        "@remix-run/react": "^2.1.0",
+        "@remix-run/serve": "^2.1.0",
+        "bcryptjs": "^2.4.3",
+        "bulma": "^0.9.4",
+        "clsx": "^2.0.0",
+        "isbot": "^3.6.8",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@remix-run/dev": "^2.1.0",
+        "@remix-run/eslint-config": "^2.1.0",
+        "@types/bcryptjs": "^2.4.5",
+        "@types/react": "^18.2.20",
+        "@types/react-dom": "^18.2.7",
+        "concurrently": "^8.2.2",
+        "eslint": "^8.38.0",
+        "prisma": "^5.4.2",
+        "sass": "^1.69.4",
+        "typescript": "^5.1.6"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}
