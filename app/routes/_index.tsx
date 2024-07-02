@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
     return (
         <>
-            <h1>⏰ Timeline Keeper ⏰</h1>
+            <h1>Mongo Template</h1>
             <Alert variant="expanded" color="primary">
                 {`You're awesome!`}
             </Alert>
