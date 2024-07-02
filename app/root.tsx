@@ -1,36 +1,16 @@
-import { cssBundleHref } from '@remix-run/css-bundle';
-import {
-    json,
-    type LinksFunction,
-    type LoaderFunctionArgs
-} from '@remix-run/node';
 import {
     Links,
-    LiveReload,
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration
-} from '@remix-run/react';
+    ScrollRestoration,
+} from "@remix-run/react";
 
-import appStyles from './styles.css';
-import { getUser } from './utils/auth.server';
+import "./tailwind.css";
 
-export const links: LinksFunction = () => [
-    {
-        rel: 'stylesheet',
-        href: appStyles
-    },
-    ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : [])
-];
-
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-    return json({ user: await getUser(request) });
-};
-
-export default function App() {
+export function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className="full-height">
+        <html lang="en">
             <head>
                 <meta charSet="utf-8" />
                 <meta
@@ -40,12 +20,15 @@ export default function App() {
                 <Meta />
                 <Links />
             </head>
-            <body className="full-height flex flex-col">
-                <Outlet />
+            <body>
+                {children}
                 <ScrollRestoration />
                 <Scripts />
-                <LiveReload />
             </body>
         </html>
     );
+}
+
+export default function App() {
+    return <Outlet />;
 }
