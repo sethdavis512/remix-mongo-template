@@ -3,15 +3,15 @@ import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
     return [
-        { title: "Timeline Keeper" },
-        { name: "description", content: "Timeline Keeper" },
+        { title: "Postgres Template" },
+        { name: "description", content: "Postgres Template" },
     ];
 };
 
 export default function Index() {
     return (
         <>
-            <h1>Mongo Template</h1>
+            <h1>Postgres Template</h1>
             <Alert variant="expanded" color="primary">
                 {`You're awesome!`}
             </Alert>

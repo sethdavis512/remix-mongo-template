@@ -13,7 +13,7 @@ if (!sessionSecret) {
 
 const storage = createCookieSessionStorage({
     cookie: {
-        name: "time-weaver-session",
+        name: "sentiment-survey",
         secure: process.env.NODE_ENV === "production",
         secrets: [sessionSecret],
         sameSite: "lax",
@@ -45,15 +45,22 @@ export async function register(user: RegisterForm) {
         );
     }
 
-    return createUserSession(newUser.id, "/");
+    return createUserSession(newUser.id, "/dashboard");
 }
 
 export async function login({ email, password }: LoginForm) {
     const user = await prisma.user.findUnique({
         where: { email },
+        include: {
+            password: true,
+        },
     });
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (
+        !user ||
+        !user.password ||
+        !(await bcrypt.compare(password, user.password.hash))
+    ) {
         return json({ error: `Incorrect login` }, { status: 400 });
     }
 
@@ -110,7 +117,7 @@ export async function getUser(request: Request) {
     try {
         const user = await prisma.user.findUnique({
             where: { id: userId },
-            select: { id: true, email: true, profile: true },
+            select: { id: true, email: true },
         });
 
         return user;

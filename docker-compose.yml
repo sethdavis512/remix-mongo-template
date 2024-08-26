@@ -1,0 +1,15 @@
+# Set the version of docker compose to use
+version: '3.9'
+
+# The containers that compose the project
+services:
+  db:
+    image: postgres:13
+    restart: always
+    container_name: remix-sentiment-survey
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pass123word
+      POSTGRES_DB: sentiment-surveys
